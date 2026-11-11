@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/Firebase-Cloud%20Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
   <img src="https://img.shields.io/badge/Capacitor-8.0-119EFF?style=for-the-badge&logo=capacitor&logoColor=white" alt="Capacitor" />
   <img src="https://img.shields.io/badge/Android-APK%20Debug-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android" />
-  <img src="https://img.shields.io/badge/Tests-35%20Passed-success?style=for-the-badge&logo=vitest&logoColor=white" alt="Tests" />
+  <img src="https://img.shields.io/badge/Tests-38%20Passed-success?style=for-the-badge&logo=vitest&logoColor=white" alt="Tests" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
 </p>
 
@@ -140,7 +140,7 @@ TalentFlow/
 ### Stack Tecnológico
 * **Frontend:** Ionic Framework 9, Angular 22 (Standalone Components), TypeScript 5.8, SCSS.
 * **Backend BaaS:** Firebase Cloud Firestore SDK Modular (`firebase/firestore`).
-* **Testing:** Vitest 5.1 (Unit Testing: 35 pruebas aprobadas), Playwright 1.65 (E2E Testing y captura automatizada de evidencias).
+* **Testing:** Vitest 5.1 (27 pruebas unitarias de Angular + 10 pruebas de reglas de Firestore en Emulador real), Playwright 1.65 (E2E Testing y captura automatizada de evidencias). Total: **38 pruebas aprobadas**.
 * **Empaquetado Móvil:** Capacitor 8, Android SDK Platform 36 (targetSdk 36, minSdk 24), Gradle Wrapper 8.14.3.
 
 ### Inventario de Componentes Ionic Utilizados (13 tipos)
@@ -259,14 +259,18 @@ export interface Candidato {
    ```
    *La aplicación estará disponible en `http://localhost:8100/`.*
 
-5. **Ejecutar pruebas unitarias, E2E y linter:**
+5. **Ejecutar pruebas unitarias, de reglas, E2E y linter:**
    ```bash
-   npm run test:unit       # 27 pruebas unitarias con Vitest
-   npm run test:e2e        # Pruebas End-to-End con Playwright
-   npm test                # Suite completa de pruebas (unit + e2e en verde)
+   npm run test:unit       # 27 pruebas unitarias con Vitest (servicios, componentes, validadores)
+   npm run test:rules      # 10 pruebas de seguridad ejecutadas en el Emulador de Firestore
+   npm run test:e2e        # Pruebas End-to-End con Playwright (Pixel 7 emulado)
+   npm test                # Suite completa: 38 pruebas en total en verde
    npm run eslint          # Verificación estricta de estilo y tipos
    npm audit --omit=dev    # Auditoría de dependencias (0 vulnerabilidades)
    ```
+
+> 🔒 **Nota sobre Credenciales y Despliegue:**
+> Las credenciales de Firebase incluidas en `environment.ts` y `.env.example` corresponden al proyecto del taller académico (`talentflowepn`). Para entornos de producción, la API key debe restringirse en Google Cloud Console mediante huella digital SHA-256 del certificado Android y nombre del paquete (`io.ionic.starter` / `com.talentflow.app`), además de habilitar Firebase App Check y utilizar las reglas de [`firestore.prod.rules`](firestore.prod.rules).
 
 ---
 

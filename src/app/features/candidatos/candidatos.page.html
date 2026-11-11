@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Candidatos Postulados</ion-title>
+    @if (!cargando()) {
+    <ion-badge slot="end" color="light" class="counter-badge"> {{ candidatos().length }} </ion-badge>
+    }
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Refresher para pull-to-refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="cargarCandidatos($event)">
+    <ion-refresher-content pullingText="Desliza para actualizar..."></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- ESTADO DE CARGA (SKELETONS) -->
+  @if (cargando()) {
+  <div class="loading-container">
+    @for (item of [1, 2, 3]; track item) {
+    <ion-card class="candidate-card skeleton-card">
+      <ion-card-header>
+        <ion-skeleton-text [animated]="true" style="width: 60%; height: 22px"></ion-skeleton-text>
+        <ion-skeleton-text [animated]="true" style="width: 40%; height: 16px; margin-top: 6px"></ion-skeleton-text>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-skeleton-text [animated]="true" style="width: 90%; height: 14px"></ion-skeleton-text>
+        <ion-skeleton-text [animated]="true" style="width: 75%; height: 14px; margin-top: 6px"></ion-skeleton-text>
+      </ion-card-content>
+    </ion-card>
+    }
+  </div>
+  }
+
+  <!-- ESTADO DE ERROR -->
+  @if (!cargando() && error()) {
+  <div class="state-container error-state">
+    <ion-icon name="alert-circle-outline" color="danger" class="state-icon"></ion-icon>
+    <h3>Error al cargar candidatos</h3>
+    <p>{{ error() }}</p>
+    <ion-button fill="outline" color="primary" (click)="cargarCandidatos()">
+      <ion-icon name="refresh-outline" slot="start"></ion-icon>
+      Reintentar
+    </ion-button>
+  </div>
+  }
+
+  <!-- ESTADO VACÍO -->
+  @if (!cargando() && !error() && candidatos().length === 0) {
+  <div class="state-container empty-state">
+    <ion-icon name="people-outline" color="medium" class="state-icon"></ion-icon>
+    <h3>No hay candidatos registrados</h3>
+    <p>Sé el primero en registrar un perfil profesional en TalentFlow.</p>
+    <ion-button color="primary" (click)="irARegistro()">
+      <ion-icon name="person-add-outline" slot="start"></ion-icon>
+      Registrar Candidato
+    </ion-button>
+  </div>
+  }
+
+  <!-- LISTADO DE CANDIDATOS -->
+  @if (!cargando() && !error() && candidatos().length > 0) {
+  <div class="candidatos-list">
+    @for (c of candidatos(); track c.id || c.correo) {
+    <ion-card class="candidate-card" (click)="verDetalle(c)" button="true">
+      <ion-card-header>
+        <div class="card-top-row">
+          <ion-badge color="primary">{{ c.cargo }}</ion-badge>
+          <ion-badge color="medium">{{ c.modalidad }}</ion-badge>
+        </div>
+        <ion-card-title>{{ c.nombres }}</ion-card-title>
+        <ion-card-subtitle>
+          <ion-icon name="time-outline"></ion-icon> {{ c.experienciaAnios }} años de experiencia • {{ c.nivelAcademico
+          }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="resumen-preview">{{ c.resumen }}</p>
+        <div class="skills-chips">
+          @for (h of c.habilidades.slice(0, 3); track h) {
+          <ion-chip color="secondary" class="mini-chip"> {{ h }} </ion-chip>
+          } @if (c.habilidades.length > 3) {
+          <ion-chip color="light" class="mini-chip"> +{{ c.habilidades.length - 3 }} más </ion-chip>
+          }
+        </div>
+
+        <div class="card-footer">
+          <span class="salary-tag">Aspiración: ${{ c.aspiracionSalarial }} USD</span>
+          <span class="detail-link"> Ver detalle <ion-icon name="chevron-forward-outline"></ion-icon> </span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    }
+  </div>
+  }
+</ion-content>

@@ -1,0 +1,39 @@
+/**
+ * TalentFlow Design Tokens & Ionic Theme Variables
+ * Aria (Designer) - Clean, accessible WCAG 2.2 AA compliant palette
+ */
+
+:root {
+  /* TalentFlow Tokens */
+  --tf-color-primary: #1e56d0;
+  --tf-color-primary-contrast: #ffffff;
+  --tf-color-accent: #0f9d58;
+  --tf-color-surface: #f8fafc;
+  --tf-color-surface-elevated: #ffffff;
+  --tf-color-text: #0f172a;
+  --tf-color-text-muted: #64748b;
+  --tf-color-danger: #dc2626;
+  --tf-color-warning: #f59e0b;
+  --tf-color-success: #16a34a;
+  --tf-color-border: #e2e8f0;
+
+  /* Ionic Overrides */
+  --ion-color-primary: #1e56d0;
+  --ion-color-primary-rgb: 30, 86, 208;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #1a4cb8;
+  --ion-color-primary-tint: #3567d5;
+
+  --ion-color-success: #16a34a;
+  --ion-color-success-rgb: 22, 163, 74;
+  --ion-color-success-contrast: #ffffff;
+
+  --ion-color-danger: #dc2626;
+  --ion-color-danger-rgb: 220, 38, 38;
+  --ion-color-danger-contrast: #ffffff;
+
+  --ion-color-warning: #f59e0b;
+  --ion-color-warning-rgb: 245, 158, 11;
+  --ion-color-warning-contrast: #000000;
+}

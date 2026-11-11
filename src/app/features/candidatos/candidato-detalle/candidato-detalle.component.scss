@@ -1,0 +1,114 @@
+.main-card {
+  margin: 0 0 16px 0;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+  ion-card-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+
+  ion-card-subtitle {
+    font-size: 1rem;
+    color: var(--ion-color-primary, #1e56d0);
+    font-weight: 600;
+  }
+}
+
+.header-badge {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 16px 0;
+
+  .stat-box {
+    background-color: var(--ion-color-light, #f8fafc);
+    padding: 10px 6px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    ion-icon {
+      font-size: 1.3rem;
+    }
+
+    .stat-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ion-color-dark, #0f172a);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--tf-color-text-muted, #64748b);
+    }
+  }
+}
+
+.skills-block {
+  margin: 16px 0;
+  .block-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+
+.resumen-block {
+  margin: 16px 0;
+  padding: 12px;
+  background-color: var(--ion-color-light, #f8fafc);
+  border-left: 4px solid var(--ion-color-primary, #1e56d0);
+  border-radius: 0 8px 8px 0;
+
+  .block-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .resumen-text {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--ion-color-dark, #1e293b);
+    margin: 0;
+  }
+}
+
+.footer-info {
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--tf-color-border, #e2e8f0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--tf-color-text-muted, #64748b);
+
+  .consent-status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+.close-btn {
+  margin: 8px 0 24px 0;
+}

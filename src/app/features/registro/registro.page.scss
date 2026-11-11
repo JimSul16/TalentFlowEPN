@@ -1,0 +1,119 @@
+.header-intro {
+  margin-bottom: 16px;
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: var(--ion-color-primary, #1e56d0);
+  }
+  p {
+    font-size: 0.95rem;
+    color: var(--tf-color-text-muted, #64748b);
+    margin: 0;
+  }
+}
+
+.form-card {
+  margin: 0 0 16px 0;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  ion-card-header {
+    padding-bottom: 8px;
+    ion-card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  ion-card-content {
+    padding-top: 0;
+  }
+}
+
+.custom-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 4px;
+}
+
+.datetime-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.error-note {
+  display: block;
+  font-size: 0.8rem;
+  margin: 4px 0 10px 4px;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ion-color-dark, #1e293b);
+  margin: 12px 0 6px 0;
+}
+
+.radio-section {
+  margin-top: 8px;
+  .radio-item {
+    --padding-start: 0;
+    --min-height: 40px;
+  }
+}
+
+.segment-section {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.checkbox-section {
+  margin-top: 12px;
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    .checkbox-item {
+      --padding-start: 0;
+      --min-height: 38px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.consentimiento-box {
+  margin-top: 14px;
+  padding: 10px;
+  background-color: var(--ion-color-light, #f1f5f9);
+  border-radius: 10px;
+  ion-item {
+    --background: transparent;
+    --padding-start: 0;
+  }
+  .consent-text {
+    font-size: 0.85rem;
+    line-height: 1.35;
+    color: var(--ion-color-medium, #475569);
+  }
+}
+
+.actions-container {
+  margin: 20px 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .submit-button {
+    --border-radius: 12px;
+    font-weight: 600;
+  }
+}

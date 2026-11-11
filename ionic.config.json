@@ -1,0 +1,7 @@
+{
+  "name": "talentflow-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

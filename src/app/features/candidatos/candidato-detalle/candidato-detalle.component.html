@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Detalle del Candidato</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if (candidato) {
+    <!-- Tarjeta de Perfil Principal -->
+    <ion-card class="main-card">
+      <ion-card-header>
+        <div class="header-badge">
+          <ion-badge color="secondary">{{ candidato.modalidad }}</ion-badge>
+          <ion-badge color="tertiary">{{ candidato.nivelAcademico }}</ion-badge>
+        </div>
+        <ion-card-title>{{ candidato.nombres }}</ion-card-title>
+        <ion-card-subtitle>{{ candidato.cargo }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <!-- Datos de Contacto -->
+        <ion-list lines="inset">
+          <ion-item>
+            <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+            <ion-label>
+              <h3>Correo Electrónico</h3>
+              <p>{{ candidato.correo }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="call-outline" slot="start" color="primary"></ion-icon>
+            <ion-label>
+              <h3>Teléfono</h3>
+              <p>{{ candidato.telefono }}</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name="calendar-outline" slot="start" color="primary"></ion-icon>
+            <ion-label>
+              <h3>Fecha de Nacimiento</h3>
+              <p>{{ candidato.fechaNacimiento }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <!-- Experiencia y Disponibilidad -->
+        <div class="stats-grid">
+          <div class="stat-box">
+            <ion-icon name="briefcase-outline" color="primary"></ion-icon>
+            <span class="stat-value">{{ candidato.experienciaAnios }} años</span>
+            <span class="stat-label">Experiencia</span>
+          </div>
+
+          <div class="stat-box">
+            <ion-icon name="cash-outline" color="success"></ion-icon>
+            <span class="stat-value">${{ candidato.aspiracionSalarial }} USD</span>
+            <span class="stat-label">Aspiración</span>
+          </div>
+
+          <div class="stat-box">
+            <ion-icon name="calendar-outline" color="warning"></ion-icon>
+            <span class="stat-value">{{ candidato.fechaDisponibilidad }}</span>
+            <span class="stat-label">Disponible</span>
+          </div>
+        </div>
+
+        <!-- Habilidades Técnicas -->
+        <div class="skills-block">
+          <ion-label class="block-title">Habilidades Técnicas:</ion-label>
+          <div class="chips-container">
+            @for (hab of candidato.habilidades; track hab) {
+              <ion-chip color="primary">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                <ion-label>{{ hab }}</ion-label>
+              </ion-chip>
+            }
+          </div>
+        </div>
+
+        <!-- Resumen Profesional -->
+        <div class="resumen-block">
+          <ion-label class="block-title">Resumen Profesional:</ion-label>
+          <p class="resumen-text">{{ candidato.resumen }}</p>
+        </div>
+
+        <!-- Consentimiento & ID -->
+        <div class="footer-info">
+          <small class="consent-status">
+            <ion-icon name="checkmark-circle-outline" color="success"></ion-icon>
+            Consentimiento de datos registrado
+          </small>
+          @if (candidato.id) {
+            <small class="doc-id">ID: {{ candidato.id }}</small>
+          }
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" fill="outline" color="medium" (click)="cerrar()" class="close-btn">
+      Cerrar Detalle
+    </ion-button>
+  }
+</ion-content>

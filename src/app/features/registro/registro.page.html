@@ -1,0 +1,280 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>TalentFlow — Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="header-intro">
+    <h2>Registro de Candidato</h2>
+    <p>Ingresa los datos del postulante para el proceso de selección empresarial.</p>
+  </div>
+
+  <form [formGroup]="candidatoForm" (ngSubmit)="onSubmit()">
+    <!-- BLOQUE 1: DATOS PERSONALES -->
+    <ion-card class="form-card">
+      <ion-card-header>
+        <ion-card-title> <ion-icon name="person-outline"></ion-icon> 1. Datos Personales </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Nombres y Apellidos -->
+        <ion-item lines="inset" class="custom-item">
+          <ion-input
+            label="Nombres y Apellidos *"
+            labelPlacement="floating"
+            formControlName="nombres"
+            placeholder="Ej: Ana María Pérez"
+            type="text"
+          ></ion-input>
+        </ion-item>
+        @if (candidatoForm.get('nombres')?.touched && candidatoForm.get('nombres')?.invalid) {
+        <ion-note color="danger" class="error-note"> Obligatorio (mínimo 3 caracteres). </ion-note>
+        }
+
+        <!-- Correo Electrónico -->
+        <ion-item lines="inset" class="custom-item">
+          <ion-input
+            label="Correo Electrónico *"
+            labelPlacement="floating"
+            formControlName="correo"
+            placeholder="ejemplo@correo.test"
+            type="email"
+          ></ion-input>
+        </ion-item>
+        @if (candidatoForm.get('correo')?.touched && candidatoForm.get('correo')?.invalid) {
+        <ion-note color="danger" class="error-note"> Ingresa un correo electrónico con formato válido. </ion-note>
+        }
+
+        <!-- Teléfono -->
+        <ion-item lines="inset" class="custom-item">
+          <ion-input
+            label="Teléfono de Contacto *"
+            labelPlacement="floating"
+            formControlName="telefono"
+            placeholder="0990000000"
+            type="tel"
+          ></ion-input>
+        </ion-item>
+        @if (candidatoForm.get('telefono')?.touched && candidatoForm.get('telefono')?.invalid) {
+        <ion-note color="danger" class="error-note"> Teléfono obligatorio (entre 7 y 15 dígitos). </ion-note>
+        }
+
+        <!-- Fecha de Nacimiento -->
+        <ion-item lines="inset" class="datetime-item">
+          <ion-label>Fecha de Nacimiento *</ion-label>
+          <ion-datetime-button datetime="datetime-nacimiento"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime
+                id="datetime-nacimiento"
+                presentation="date"
+                formControlName="fechaNacimiento"
+                [max]="fechaHoy"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+        @if (candidatoForm.get('fechaNacimiento')?.touched && candidatoForm.get('fechaNacimiento')?.invalid) {
+        <ion-note color="danger" class="error-note"> La fecha de nacimiento no puede ser futura. </ion-note>
+        }
+      </ion-card-content>
+    </ion-card>
+
+    <!-- BLOQUE 2: PERFIL PROFESIONAL -->
+    <ion-card class="form-card">
+      <ion-card-header>
+        <ion-card-title> <ion-icon name="briefcase-outline"></ion-icon> 2. Perfil Profesional </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Cargo al que postula -->
+        <ion-item lines="inset" class="custom-item">
+          <ion-select
+            label="Cargo al que postula *"
+            labelPlacement="floating"
+            formControlName="cargo"
+            placeholder="Selecciona una opción"
+          >
+            @for (c of cargos; track c) {
+            <ion-select-option [value]="c"> {{ c }} </ion-select-option>
+            }
+          </ion-select>
+        </ion-item>
+        @if (candidatoForm.get('cargo')?.touched && candidatoForm.get('cargo')?.invalid) {
+        <ion-note color="danger" class="error-note"> Debes seleccionar el cargo de postulación. </ion-note>
+        }
+
+        <!-- Nivel Académico -->
+        <div class="radio-section">
+          <ion-label class="section-label">Nivel Académico *</ion-label>
+          <ion-radio-group formControlName="nivelAcademico">
+            @for (n of niveles; track n) {
+            <ion-item lines="none" class="radio-item">
+              <ion-radio [value]="n" justify="space-between">{{ n }}</ion-radio>
+            </ion-item>
+            }
+          </ion-radio-group>
+        </div>
+        @if (candidatoForm.get('nivelAcademico')?.touched && candidatoForm.get('nivelAcademico')?.invalid) {
+        <ion-note color="danger" class="error-note"> Selecciona tu nivel académico máximo. </ion-note>
+        }
+
+        <!-- Años de Experiencia -->
+        <ion-item lines="inset" class="custom-item">
+          <ion-input
+            label="Años de Experiencia *"
+            labelPlacement="floating"
+            formControlName="experienciaAnios"
+            type="number"
+            min="0"
+            max="50"
+          ></ion-input>
+        </ion-item>
+        @if (candidatoForm.get('experienciaAnios')?.touched && candidatoForm.get('experienciaAnios')?.invalid) {
+        <ion-note color="danger" class="error-note"> Ingresa un valor entero entre 0 y 50 años. </ion-note>
+        }
+
+        <!-- Modalidad de Trabajo -->
+        <div class="segment-section">
+          <ion-label class="section-label">Modalidad de Trabajo *</ion-label>
+          <ion-segment formControlName="modalidad" color="primary">
+            @for (m of modalidades; track m) {
+            <ion-segment-button [value]="m">
+              <ion-label>{{ m }}</ion-label>
+            </ion-segment-button>
+            }
+          </ion-segment>
+        </div>
+
+        <!-- Habilidades Técnicas -->
+        <div class="checkbox-section">
+          <ion-label class="section-label">Habilidades Técnicas * (mínimo 1)</ion-label>
+          <div class="skills-grid">
+            @for (hab of habilidadesLista; track hab) {
+            <ion-item lines="none" class="checkbox-item">
+              <ion-checkbox
+                [checked]="isHabilidadSelected(hab)"
+                (ionChange)="onHabilidadChange(hab, $event)"
+                justify="space-between"
+              >
+                {{ hab }}
+              </ion-checkbox>
+            </ion-item>
+            }
+          </div>
+        </div>
+        @if (candidatoForm.get('habilidades')?.touched && candidatoForm.get('habilidades')?.invalid) {
+        <ion-note color="danger" class="error-note"> Selecciona al menos una habilidad técnica. </ion-note>
+        }
+      </ion-card-content>
+    </ion-card>
+
+    <!-- BLOQUE 3: DISPONIBILIDAD Y PRESENTACIÓN -->
+    <ion-card class="form-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="document-text-outline"></ion-icon> 3. Disponibilidad y Presentación
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Fecha de Disponibilidad -->
+        <ion-item lines="inset" class="datetime-item">
+          <ion-label>Fecha Disponible para Iniciar *</ion-label>
+          <ion-datetime-button datetime="datetime-disponibilidad"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime
+                id="datetime-disponibilidad"
+                presentation="date"
+                formControlName="fechaDisponibilidad"
+                [min]="fechaHoy"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+        @if (candidatoForm.get('fechaDisponibilidad')?.touched && candidatoForm.get('fechaDisponibilidad')?.invalid) {
+        <ion-note color="danger" class="error-note">
+          La fecha disponible no puede ser anterior al día de hoy.
+        </ion-note>
+        }
+
+        <!-- Aspiración Salarial -->
+        <ion-item lines="inset" class="custom-item">
+          <ion-input
+            label="Aspiración Salarial (USD) *"
+            labelPlacement="floating"
+            formControlName="aspiracionSalarial"
+            type="number"
+            min="1"
+            placeholder="Ej: 1200"
+          ></ion-input>
+        </ion-item>
+        @if (candidatoForm.get('aspiracionSalarial')?.touched && candidatoForm.get('aspiracionSalarial')?.invalid) {
+        <ion-note color="danger" class="error-note"> La aspiración salarial debe ser un monto mayor a 0 USD. </ion-note>
+        }
+
+        <!-- Resumen Profesional -->
+        <ion-item lines="inset" class="custom-item">
+          <ion-textarea
+            label="Resumen Profesional * (mínimo 30 caracteres)"
+            labelPlacement="floating"
+            formControlName="resumen"
+            rows="4"
+            placeholder="Describe brevemente tu trayectoria, fortalezas y metas..."
+          ></ion-textarea>
+        </ion-item>
+        @if (candidatoForm.get('resumen')?.touched && candidatoForm.get('resumen')?.invalid) {
+        <ion-note color="danger" class="error-note">
+          El resumen profesional debe tener al menos 30 caracteres (actual: {{
+          candidatoForm.get('resumen')?.value?.length || 0 }}).
+        </ion-note>
+        }
+
+        <!-- Consentimiento -->
+        <div class="consentimiento-box">
+          <ion-item lines="none">
+            <ion-checkbox formControlName="consentimiento" justify="start">
+              <span class="consent-text">
+                Acepto el tratamiento de estos datos ficticios para fines exclusivos de la prueba técnica de TalentFlow
+                S. A. *
+              </span>
+            </ion-checkbox>
+          </ion-item>
+        </div>
+        @if (candidatoForm.get('consentimiento')?.touched && candidatoForm.get('consentimiento')?.invalid) {
+        <ion-note color="danger" class="error-note">
+          Debes marcar la casilla de aceptación para poder registrarte.
+        </ion-note>
+        }
+      </ion-card-content>
+    </ion-card>
+
+    <!-- BOTONES DE ACCIÓN -->
+    <div class="actions-container">
+      <ion-button
+        expand="block"
+        type="submit"
+        size="large"
+        [disabled]="candidatoForm.invalid || guardando()"
+        color="primary"
+        class="submit-button"
+      >
+        @if (guardando()) {
+        <ion-spinner name="crescent"></ion-spinner>
+        } @else {
+        <ion-icon name="send-outline" slot="start"></ion-icon>
+        Guardar Candidato }
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        fill="outline"
+        color="medium"
+        type="button"
+        (click)="resetForm()"
+        [disabled]="guardando()"
+      >
+        Limpiar Formulario
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

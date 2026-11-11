@@ -1,0 +1,6 @@
+.agent/
+android/
+dist/
+www/
+node_modules/
+package-lock.json

@@ -46,7 +46,7 @@ export function fechaNoPasadaValidator(): ValidatorFn {
 }
 
 /**
- * Valida formato razonable de teléfono (entre 7 y 15 dígitos numéricos, opcional + inicial).
+ * Valida formato razonable de teléfono (debe contener entre 7 y 15 dígitos reales, opcional + inicial).
  */
 export function telefonoValidoValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -54,9 +54,43 @@ export function telefonoValidoValidator(): ValidatorFn {
       return null;
     }
     const valor = String(control.value).trim();
-    const regex = /^[+]?[0-9\s-]{7,15}$/;
-    if (!regex.test(valor)) {
+    const regexFormato = /^[+]?[0-9\s-]{7,20}$/;
+    const digitos = valor.replace(/\D/g, '');
+    if (!regexFormato.test(valor) || digitos.length < 7 || digitos.length > 15) {
       return { telefonoInvalido: true };
+    }
+    return null;
+  };
+}
+
+/**
+ * Valida formato estricto de correo electrónico con TLD (ej. usuario@dominio.com).
+ */
+export function correoValidoValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value) {
+      return null;
+    }
+    const valor = String(control.value).trim();
+    const regex = /^[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}$/;
+    if (!regex.test(valor)) {
+      return { correoInvalido: true };
+    }
+    return null;
+  };
+}
+
+/**
+ * Valida que el valor sea un número entero (sin decimales).
+ */
+export function enteroValidoValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (control.value === null || control.value === undefined || control.value === '') {
+      return null;
+    }
+    const num = Number(control.value);
+    if (isNaN(num) || !Number.isInteger(num)) {
+      return { noEsEntero: true };
     }
     return null;
   };

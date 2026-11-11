@@ -5,6 +5,8 @@ import {
   fechaNoPasadaValidator,
   telefonoValidoValidator,
   alMenosUnaHabilidadValidator,
+  correoValidoValidator,
+  enteroValidoValidator,
 } from './candidato.validators';
 
 describe('CandidatoValidators', () => {
@@ -45,12 +47,48 @@ describe('CandidatoValidators', () => {
       const validator = telefonoValidoValidator();
       expect(validator(new FormControl('0990000000'))).toBeNull();
       expect(validator(new FormControl('+593990000000'))).toBeNull();
+      expect(validator(new FormControl('02 2991 700'))).toBeNull();
     });
 
     it('debe rechazar números con letras o muy cortos', () => {
       const validator = telefonoValidoValidator();
       expect(validator(new FormControl('123'))).toEqual({ telefonoInvalido: true });
       expect(validator(new FormControl('099abc000'))).toEqual({ telefonoInvalido: true });
+    });
+
+    it('debe rechazar cadenas sin dígitos como guiones o espacios (M-01)', () => {
+      const validator = telefonoValidoValidator();
+      expect(validator(new FormControl('-------'))).toEqual({ telefonoInvalido: true });
+      expect(validator(new FormControl('       '))).toEqual({ telefonoInvalido: true });
+    });
+  });
+
+  describe('correoValidoValidator', () => {
+    it('debe aceptar correos con dominio y TLD válido', () => {
+      const validator = correoValidoValidator();
+      expect(validator(new FormControl('test@talentflow.com'))).toBeNull();
+      expect(validator(new FormControl('docente.movil@epn.edu.ec'))).toBeNull();
+    });
+
+    it('debe rechazar correos sin punto o sin dominio válido', () => {
+      const validator = correoValidoValidator();
+      expect(validator(new FormControl('sin-arroba'))).toEqual({ correoInvalido: true });
+      expect(validator(new FormControl('usuario@localhost'))).toEqual({ correoInvalido: true });
+    });
+  });
+
+  describe('enteroValidoValidator', () => {
+    it('debe aceptar números enteros', () => {
+      const validator = enteroValidoValidator();
+      expect(validator(new FormControl(0))).toBeNull();
+      expect(validator(new FormControl(5))).toBeNull();
+      expect(validator(new FormControl('10'))).toBeNull();
+    });
+
+    it('debe rechazar decimales', () => {
+      const validator = enteroValidoValidator();
+      expect(validator(new FormControl(1.5))).toEqual({ noEsEntero: true });
+      expect(validator(new FormControl('3.2'))).toEqual({ noEsEntero: true });
     });
   });
 

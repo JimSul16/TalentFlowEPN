@@ -86,4 +86,22 @@ export class CandidatoDetalleComponent {
   cerrar(): Promise<boolean> {
     return this.modalCtrl.dismiss();
   }
+
+  formatearFecha(fecha: string | null | undefined): string {
+    if (!fecha) return 'No especificada';
+    const partes = String(fecha).split('T')[0].split('-');
+    if (partes.length === 3) {
+      const [year, month, day] = partes;
+      return `${day}/${month}/${year}`;
+    }
+    return String(fecha);
+  }
+
+  formatearSalario(salario: number | null | undefined): string {
+    if (salario === null || salario === undefined) return '$0.00 USD';
+    return new Intl.NumberFormat('es-EC', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(Number(salario));
+  }
 }

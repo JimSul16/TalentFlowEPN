@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import type { FormGroup } from '@angular/forms';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IonButton,
   IonCard,
@@ -54,6 +55,8 @@ import {
 } from '../../core/models/candidato-options';
 import {
   alMenosUnaHabilidadValidator,
+  correoValidoValidator,
+  enteroValidoValidator,
   fechaNoFuturaValidator,
   fechaNoPasadaValidator,
   getFechaHoyISO,
@@ -101,6 +104,7 @@ export class RegistroPage {
   private fb = inject(FormBuilder);
   private candidatosService = inject(CandidatosService);
   private toastController = inject(ToastController);
+  private router = inject(Router);
 
   candidatoForm: FormGroup;
   guardando = signal<boolean>(false);
@@ -129,18 +133,18 @@ export class RegistroPage {
     });
 
     this.candidatoForm = this.fb.group({
-      nombres: ['', [Validators.required, Validators.minLength(3)]],
-      correo: ['', [Validators.required, Validators.email]],
+      nombres: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      correo: ['', [Validators.required, correoValidoValidator()]],
       telefono: ['', [Validators.required, telefonoValidoValidator()]],
-      fechaNacimiento: [this.fechaHoy, [Validators.required, fechaNoFuturaValidator()]],
+      fechaNacimiento: ['', [Validators.required, fechaNoFuturaValidator()]],
       cargo: ['', Validators.required],
       nivelAcademico: ['', Validators.required],
-      experienciaAnios: [0, [Validators.required, Validators.min(0), Validators.max(50)]],
+      experienciaAnios: [0, [Validators.required, Validators.min(0), Validators.max(50), enteroValidoValidator()]],
       modalidad: ['Presencial', Validators.required],
       habilidades: [[], alMenosUnaHabilidadValidator()],
-      fechaDisponibilidad: [this.fechaHoy, [Validators.required, fechaNoPasadaValidator()]],
+      fechaDisponibilidad: ['', [Validators.required, fechaNoPasadaValidator()]],
       aspiracionSalarial: [null, [Validators.required, Validators.min(1)]],
-      resumen: ['', [Validators.required, Validators.minLength(30)]],
+      resumen: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(600)]],
       consentimiento: [false, Validators.requiredTrue],
     });
   }
@@ -201,6 +205,7 @@ export class RegistroPage {
       await this.candidatosService.crear(payload);
       await this.mostrarToast('¡Candidato registrado con éxito en Firestore!', 'success');
       this.resetForm();
+      await this.router.navigate(['/tabs/candidatos']);
     } catch (error: any) {
       await this.mostrarToast(error.message || 'Error al guardar el candidato.', 'danger');
     } finally {
@@ -216,13 +221,13 @@ export class RegistroPage {
       nombres: '',
       correo: '',
       telefono: '',
-      fechaNacimiento: this.fechaHoy,
+      fechaNacimiento: '',
       cargo: '',
       nivelAcademico: '',
       experienciaAnios: 0,
       modalidad: 'Presencial',
       habilidades: [],
-      fechaDisponibilidad: this.fechaHoy,
+      fechaDisponibilidad: '',
       aspiracionSalarial: null,
       resumen: '',
       consentimiento: false,

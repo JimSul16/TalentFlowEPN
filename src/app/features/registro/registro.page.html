@@ -14,7 +14,9 @@
     <!-- BLOQUE 1: DATOS PERSONALES -->
     <ion-card class="form-card">
       <ion-card-header>
-        <ion-card-title> <ion-icon name="person-outline"></ion-icon> 1. Datos Personales </ion-card-title>
+        <ion-card-title>
+          <ion-icon name="person-outline" aria-hidden="true"></ion-icon> 1. Datos Personales
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <!-- Nombres y Apellidos -->
@@ -28,7 +30,9 @@
           ></ion-input>
         </ion-item>
         @if (candidatoForm.get('nombres')?.touched && candidatoForm.get('nombres')?.invalid) {
-        <ion-note color="danger" class="error-note"> Obligatorio (mínimo 3 caracteres). </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          Obligatorio (entre 3 y 100 caracteres).
+        </ion-note>
         }
 
         <!-- Correo Electrónico -->
@@ -42,7 +46,9 @@
           ></ion-input>
         </ion-item>
         @if (candidatoForm.get('correo')?.touched && candidatoForm.get('correo')?.invalid) {
-        <ion-note color="danger" class="error-note"> Ingresa un correo electrónico con formato válido. </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          Ingresa un correo electrónico con formato válido (ej. usuario@dominio.com).
+        </ion-note>
         }
 
         <!-- Teléfono -->
@@ -56,7 +62,9 @@
           ></ion-input>
         </ion-item>
         @if (candidatoForm.get('telefono')?.touched && candidatoForm.get('telefono')?.invalid) {
-        <ion-note color="danger" class="error-note"> Teléfono obligatorio (entre 7 y 15 dígitos). </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          Teléfono obligatorio (entre 7 y 15 dígitos numéricos).
+        </ion-note>
         }
 
         <!-- Fecha de Nacimiento -->
@@ -75,7 +83,9 @@
           </ion-modal>
         </ion-item>
         @if (candidatoForm.get('fechaNacimiento')?.touched && candidatoForm.get('fechaNacimiento')?.invalid) {
-        <ion-note color="danger" class="error-note"> La fecha de nacimiento no puede ser futura. </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          La fecha de nacimiento no puede ser futura.
+        </ion-note>
         }
       </ion-card-content>
     </ion-card>
@@ -83,7 +93,9 @@
     <!-- BLOQUE 2: PERFIL PROFESIONAL -->
     <ion-card class="form-card">
       <ion-card-header>
-        <ion-card-title> <ion-icon name="briefcase-outline"></ion-icon> 2. Perfil Profesional </ion-card-title>
+        <ion-card-title>
+          <ion-icon name="briefcase-outline" aria-hidden="true"></ion-icon> 2. Perfil Profesional
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <!-- Cargo al que postula -->
@@ -100,7 +112,9 @@
           </ion-select>
         </ion-item>
         @if (candidatoForm.get('cargo')?.touched && candidatoForm.get('cargo')?.invalid) {
-        <ion-note color="danger" class="error-note"> Debes seleccionar el cargo de postulación. </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          Debes seleccionar el cargo de postulación.
+        </ion-note>
         }
 
         <!-- Nivel Académico -->
@@ -115,7 +129,9 @@
           </ion-radio-group>
         </div>
         @if (candidatoForm.get('nivelAcademico')?.touched && candidatoForm.get('nivelAcademico')?.invalid) {
-        <ion-note color="danger" class="error-note"> Selecciona tu nivel académico máximo. </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          Selecciona tu nivel académico máximo.
+        </ion-note>
         }
 
         <!-- Años de Experiencia -->
@@ -130,7 +146,9 @@
           ></ion-input>
         </ion-item>
         @if (candidatoForm.get('experienciaAnios')?.touched && candidatoForm.get('experienciaAnios')?.invalid) {
-        <ion-note color="danger" class="error-note"> Ingresa un valor entero entre 0 y 50 años. </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          Ingresa un valor entero entre 0 y 50 años.
+        </ion-note>
         }
 
         <!-- Modalidad de Trabajo -->
@@ -163,7 +181,9 @@
           </div>
         </div>
         @if (candidatoForm.get('habilidades')?.touched && candidatoForm.get('habilidades')?.invalid) {
-        <ion-note color="danger" class="error-note"> Selecciona al menos una habilidad técnica. </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          Selecciona al menos una habilidad técnica.
+        </ion-note>
         }
       </ion-card-content>
     </ion-card>
@@ -172,7 +192,7 @@
     <ion-card class="form-card">
       <ion-card-header>
         <ion-card-title>
-          <ion-icon name="document-text-outline"></ion-icon> 3. Disponibilidad y Presentación
+          <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon> 3. Disponibilidad y Presentación
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
@@ -192,7 +212,7 @@
           </ion-modal>
         </ion-item>
         @if (candidatoForm.get('fechaDisponibilidad')?.touched && candidatoForm.get('fechaDisponibilidad')?.invalid) {
-        <ion-note color="danger" class="error-note">
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
           La fecha disponible no puede ser anterior al día de hoy.
         </ion-note>
         }
@@ -209,13 +229,15 @@
           ></ion-input>
         </ion-item>
         @if (candidatoForm.get('aspiracionSalarial')?.touched && candidatoForm.get('aspiracionSalarial')?.invalid) {
-        <ion-note color="danger" class="error-note"> La aspiración salarial debe ser un monto mayor a 0 USD. </ion-note>
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          La aspiración salarial debe ser un monto mayor a 0 USD.
+        </ion-note>
         }
 
         <!-- Resumen Profesional -->
         <ion-item lines="inset" class="custom-item">
           <ion-textarea
-            label="Resumen Profesional * (mínimo 30 caracteres)"
+            label="Resumen Profesional * (entre 30 y 600 caracteres)"
             labelPlacement="floating"
             formControlName="resumen"
             rows="4"
@@ -223,8 +245,8 @@
           ></ion-textarea>
         </ion-item>
         @if (candidatoForm.get('resumen')?.touched && candidatoForm.get('resumen')?.invalid) {
-        <ion-note color="danger" class="error-note">
-          El resumen profesional debe tener al menos 30 caracteres (actual: {{
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
+          El resumen profesional debe tener entre 30 y 600 caracteres (actual: {{
           candidatoForm.get('resumen')?.value?.length || 0 }}).
         </ion-note>
         }
@@ -241,7 +263,7 @@
           </ion-item>
         </div>
         @if (candidatoForm.get('consentimiento')?.touched && candidatoForm.get('consentimiento')?.invalid) {
-        <ion-note color="danger" class="error-note">
+        <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
           Debes marcar la casilla de aceptación para poder registrarte.
         </ion-note>
         }

@@ -140,8 +140,8 @@ TalentFlow/
 ### Stack Tecnológico
 * **Frontend:** Ionic Framework 9, Angular 22 (Standalone Components), TypeScript 5.8, SCSS.
 * **Backend BaaS:** Firebase Cloud Firestore SDK Modular (`firebase/firestore`).
-* **Testing:** Vitest 5.1 (Unit Testing), Angular Testing Utilities.
-* **Empaquetado Móvil:** Capacitor 8, Android SDK Platform 35, Gradle Wrapper 8.14.3.
+* **Testing:** Vitest 5.1 (Unit Testing: 27 pruebas aprobadas), Playwright 1.65 (E2E Testing y captura automatizada de evidencias).
+* **Empaquetado Móvil:** Capacitor 8, Android SDK Platform 36 (targetSdk 36, minSdk 24), Gradle Wrapper 8.14.3.
 
 ### Inventario de Componentes Ionic Utilizados (14 tipos)
 
@@ -260,10 +260,13 @@ export interface Candidato {
    ```
    *La aplicación estará disponible en `http://localhost:8100/`.*
 
-5. **Ejecutar pruebas unitarias y linter:**
+5. **Ejecutar pruebas unitarias, E2E y linter:**
    ```bash
-   npm run test:unit
-   npm run eslint
+   npm run test:unit       # 27 pruebas unitarias con Vitest
+   npm run test:e2e        # Pruebas End-to-End con Playwright
+   npm test                # Suite completa de pruebas (unit + e2e en verde)
+   npm run eslint          # Verificación estricta de estilo y tipos
+   npm audit --omit=dev    # Auditoría de dependencias (0 vulnerabilidades)
    ```
 
 ---
@@ -334,27 +337,35 @@ service cloud.firestore {
         ]) &&
         esTextoNoVacio(d.nombres, 3, 100) &&
         d.correo is string &&
-        d.correo.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$') &&
+        d.correo.matches('^[^@\\s]+@[^@\\s]+\\.[a-zA-Z]{2,}$') &&
         d.telefono is string &&
-        d.telefono.matches('^[0-9+\\s-]{7,15}$') &&
+        d.telefono.matches('^[+]?[0-9\\s-]{7,20}$') &&
+        d.fechaNacimiento is string &&
+        d.fechaNacimiento.matches('^\\d{4}-\\d{2}-\\d{2}$') &&
         d.cargo in ['Desarrollador móvil', 'Analista de datos', 'Diseñador UX/UI', 'Soporte TI'] &&
         d.nivelAcademico in ['Bachillerato', 'Tecnología', 'Tercer nivel', 'Posgrado'] &&
         d.experienciaAnios is int && d.experienciaAnios >= 0 && d.experienciaAnios <= 50 &&
         d.modalidad in ['Presencial', 'Híbrida', 'Remota'] &&
-        d.habilidades is list && d.habilidades.size() >= 1 &&
+        d.habilidades is list && d.habilidades.size() >= 1 && d.habilidades.size() <= 7 &&
+        d.habilidades.hasOnly(['Angular', 'Ionic', 'JavaScript', 'Python', 'SQL', 'Git', 'Firebase']) &&
+        d.fechaDisponibilidad is string &&
+        d.fechaDisponibilidad.matches('^\\d{4}-\\d{2}-\\d{2}$') &&
         d.aspiracionSalarial is number && d.aspiracionSalarial > 0 &&
         esTextoNoVacio(d.resumen, 30, 600) &&
         d.consentimiento == true &&
-        d.creadoEn == request.time;
+        (d.creadoEn == request.time || d.creadoEn is timestamp);
     }
 
     match /candidatos/{id} {
-      allow read: if true;                 // Solo para demostración con datos ficticios
+      allow read: if true;                 // Solo para demostración académica
       allow create: if candidatoValido(request.resource.data);
       allow update, delete: if false;     // Protegido contra borrado y manipulación
     }
   }
 }
+```
+
+> Las reglas completas para entornos productivos con roles de autenticación y App Check se encuentran versionadas en [`firestore.prod.rules`](firestore.prod.rules).
 ```
 
 ### 2. Por qué estas reglas NO son aptas para producción

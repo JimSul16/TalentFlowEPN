@@ -1,7 +1,11 @@
-# Environment
+# Environment & Secrets
 .env
 .env.local
 *.env
+src/environments/environment.local.ts
+serviceAccount*.json
+.firebase/
+keystore.properties
 
 # Dependencies
 node_modules/

@@ -86,6 +86,13 @@ export class CandidatosPage implements OnInit {
   }
 
   /**
+   * Se ejecuta automáticamente al ingresar a la pestaña para refrescar los datos.
+   */
+  ionViewWillEnter(): void {
+    void this.cargarCandidatos();
+  }
+
+  /**
    * Carga los candidatos desde Firestore.
    */
   async cargarCandidatos(event?: CustomEvent): Promise<void> {

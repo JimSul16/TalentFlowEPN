@@ -45,7 +45,7 @@
             <ion-icon name="calendar-outline" slot="start" color="primary"></ion-icon>
             <ion-label>
               <h3>Fecha de Nacimiento</h3>
-              <p>{{ candidato.fechaNacimiento }}</p>
+              <p>{{ formatearFecha(candidato.fechaNacimiento) }}</p>
             </ion-label>
           </ion-item>
         </ion-list>
@@ -60,13 +60,13 @@
 
           <div class="stat-box">
             <ion-icon name="cash-outline" color="success"></ion-icon>
-            <span class="stat-value">${{ candidato.aspiracionSalarial }} USD</span>
+            <span class="stat-value">{{ formatearSalario(candidato.aspiracionSalarial) }}</span>
             <span class="stat-label">Aspiración</span>
           </div>
 
           <div class="stat-box">
             <ion-icon name="calendar-outline" color="warning"></ion-icon>
-            <span class="stat-value">{{ candidato.fechaDisponibilidad }}</span>
+            <span class="stat-value">{{ formatearFecha(candidato.fechaDisponibilidad) }}</span>
             <span class="stat-label">Disponible</span>
           </div>
         </div>

@@ -25,4 +25,17 @@ describe('CandidatosService', () => {
     const mensaje = (service as any).traducirError(errorSimulado);
     expect(mensaje).toContain('no está disponible');
   });
+
+  it('debe traducir error de registro no encontrado', () => {
+    const errorSimulado = { code: 'not-found' };
+    const mensaje = (service as any).traducirError(errorSimulado);
+    expect(mensaje).toContain('No se encontró');
+  });
+
+  it('debe traducir errores desconocidos a mensaje genérico seguro', () => {
+    const errorSimulado = { message: 'internal secret info' };
+    const mensaje = (service as any).traducirError(errorSimulado);
+    expect(mensaje).toContain('Ocurrió un error');
+    expect(mensaje).not.toContain('internal secret info');
+  });
 });

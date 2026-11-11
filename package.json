@@ -1,8 +1,9 @@
 {
   "name": "talentflow-app",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "1.0.0",
+  "author": "TalentFlow Team",
+  "description": "TalentFlow - Aplicación móvil de registro y gestión de candidatos con Ionic y Firebase",
+  "homepage": "https://github.com/jzaldumbide/ionic-formulario-firebase",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,7 +17,8 @@
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "ng test --no-watch",
     "test:unit:watch": "ng test --watch",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test e2e/app.spec.ts",
+    "test:rules": "vitest run src/app/core/rules/firestore.rules.spec.ts",
     "build:android": "npm run build && npx cap sync android",
     "apk:debug": "npm run build:android && cd android && gradlew.bat assembleDebug"
   },
@@ -60,5 +62,7 @@
     "vitest": "^5.1.0"
   },
   "prettier": "@ionic/prettier-config",
-  "description": "An Ionic project"
+  "overrides": {
+    "@grpc/grpc-js": "^1.14.7"
+  }
 }

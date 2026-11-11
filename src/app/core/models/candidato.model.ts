@@ -1,3 +1,5 @@
+import type { Timestamp } from 'firebase/firestore';
+
 export type Cargo = 'Desarrollador móvil' | 'Analista de datos' | 'Diseñador UX/UI' | 'Soporte TI';
 
 export type NivelAcademico = 'Bachillerato' | 'Tecnología' | 'Tercer nivel' | 'Posgrado';
@@ -21,5 +23,5 @@ export interface Candidato {
   aspiracionSalarial: number; // USD
   resumen: string;
   consentimiento: boolean;
-  creadoEn?: any; // Timestamp de Firestore
+  creadoEn?: Timestamp | string | null;
 }

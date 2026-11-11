@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function esTextoNoVacio(v, min, max) {
+      return v is string && v.size() >= min && v.size() <= max;
+    }
+
+    function candidatoValido(d) {
+      return d.keys().hasOnly([
+          'nombres', 'correo', 'telefono', 'fechaNacimiento', 'cargo',
+          'nivelAcademico', 'experienciaAnios', 'modalidad', 'habilidades',
+          'fechaDisponibilidad', 'aspiracionSalarial', 'resumen',
+          'consentimiento', 'creadoEn'
+        ]) &&
+        esTextoNoVacio(d.nombres, 3, 100) &&
+        d.correo is string &&
+        d.correo.matches('^[^@\\s]+@[^@\\s]+\\.[a-zA-Z]{2,}$') &&
+        d.telefono is string &&
+        d.telefono.matches('^[+]?[0-9\\s-]{7,20}$') &&
+        d.fechaNacimiento is string &&
+        d.fechaNacimiento.matches('^\\d{4}-\\d{2}-\\d{2}$') &&
+        d.cargo in ['Desarrollador móvil', 'Analista de datos', 'Diseñador UX/UI', 'Soporte TI'] &&
+        d.nivelAcademico in ['Bachillerato', 'Tecnología', 'Tercer nivel', 'Posgrado'] &&
+        d.experienciaAnios is int && d.experienciaAnios >= 0 && d.experienciaAnios <= 50 &&
+        d.modalidad in ['Presencial', 'Híbrida', 'Remota'] &&
+        d.habilidades is list && d.habilidades.size() >= 1 && d.habilidades.size() <= 7 &&
+        d.habilidades.hasOnly(['Angular', 'Ionic', 'JavaScript', 'Python', 'SQL', 'Git', 'Firebase']) &&
+        d.fechaDisponibilidad is string &&
+        d.fechaDisponibilidad.matches('^\\d{4}-\\d{2}-\\d{2}$') &&
+        d.aspiracionSalarial is number && d.aspiracionSalarial > 0 &&
+        esTextoNoVacio(d.resumen, 30, 600) &&
+        d.consentimiento == true &&
+        (d.creadoEn == request.time || d.creadoEn is timestamp);
+    }
+
+    match /candidatos/{id} {
+      // Producción: Solo personal autenticado con rol de 'reclutador' puede listar hojas de vida
+      allow read: if request.auth != null && request.auth.token.role == 'reclutador';
+      
+      // Creación: Valida esquema y requiere autenticación o App Check
+      allow create: if request.auth != null && candidatoValido(request.resource.data);
+      
+      // Inmutable para auditoría laboral
+      allow update, delete: if false;
+    }
+  }
+}

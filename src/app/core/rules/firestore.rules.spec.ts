@@ -44,9 +44,14 @@ describe('Firestore Security Rules Specification', () => {
       return { permitido: false, motivo: 'Correo inválido o sin TLD' };
     }
 
-    const telRegex = /^[+]?[0-9\s-]{7,20}$/;
+    const telRegex = /^[+]?[0-9][0-9\s-]{6,19}$/;
     const digitos = String(data['telefono']).replace(/\D/g, '');
-    if (typeof data['telefono'] !== 'string' || !telRegex.test(data['telefono']) || digitos.length < 7) {
+    if (
+      typeof data['telefono'] !== 'string' ||
+      !telRegex.test(data['telefono']) ||
+      digitos.length < 7 ||
+      digitos.length > 15
+    ) {
       return { permitido: false, motivo: 'Teléfono inválido' };
     }
 

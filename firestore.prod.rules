@@ -16,7 +16,7 @@ service cloud.firestore {
         d.correo is string &&
         d.correo.matches('^[^@\\s]+@[^@\\s]+\\.[a-zA-Z]{2,}$') &&
         d.telefono is string &&
-        d.telefono.matches('^[+]?[0-9\\s-]{7,20}$') &&
+        d.telefono.matches('^[+]?[0-9][0-9\\s-]{6,19}$') &&
         d.fechaNacimiento is string &&
         d.fechaNacimiento.matches('^\\d{4}-\\d{2}-\\d{2}$') &&
         d.cargo in ['Desarrollador móvil', 'Analista de datos', 'Diseñador UX/UI', 'Soporte TI'] &&
@@ -30,7 +30,7 @@ service cloud.firestore {
         d.aspiracionSalarial is number && d.aspiracionSalarial > 0 &&
         esTextoNoVacio(d.resumen, 30, 600) &&
         d.consentimiento == true &&
-        (d.creadoEn == request.time || d.creadoEn is timestamp);
+        d.creadoEn == request.time;
     }
 
     match /candidatos/{id} {

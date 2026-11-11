@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/Firebase-Cloud%20Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
   <img src="https://img.shields.io/badge/Capacitor-8.0-119EFF?style=for-the-badge&logo=capacitor&logoColor=white" alt="Capacitor" />
   <img src="https://img.shields.io/badge/Android-APK%20Debug-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android" />
-  <img src="https://img.shields.io/badge/Tests-19%20Passed-success?style=for-the-badge&logo=vitest&logoColor=white" alt="Tests" />
+  <img src="https://img.shields.io/badge/Tests-35%20Passed-success?style=for-the-badge&logo=vitest&logoColor=white" alt="Tests" />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
 </p>
 
@@ -140,16 +140,14 @@ TalentFlow/
 ### Stack Tecnológico
 * **Frontend:** Ionic Framework 9, Angular 22 (Standalone Components), TypeScript 5.8, SCSS.
 * **Backend BaaS:** Firebase Cloud Firestore SDK Modular (`firebase/firestore`).
-* **Testing:** Vitest 5.1 (Unit Testing: 27 pruebas aprobadas), Playwright 1.65 (E2E Testing y captura automatizada de evidencias).
+* **Testing:** Vitest 5.1 (Unit Testing: 35 pruebas aprobadas), Playwright 1.65 (E2E Testing y captura automatizada de evidencias).
 * **Empaquetado Móvil:** Capacitor 8, Android SDK Platform 36 (targetSdk 36, minSdk 24), Gradle Wrapper 8.14.3.
 
-### Inventario de Componentes Ionic Utilizados (14 tipos)
+### Inventario de Componentes Ionic Utilizados (13 tipos)
 
 | Componente | Sección / Pantalla | Propósito |
 |---|---|---|
-| `ion-input` | Registro | Captura de nombres, correo, teléfono, experiencia y salario. |
-| `ion-datetime` | Registro | Selector de fecha de nacimiento y fecha de disponibilidad. |
-| `ion-datetime-button` | Registro | Disparador ergonómico del selector de fecha en modal. |
+| `ion-input` | Registro | Captura de nombres, correo, teléfono, fechas (date picker), experiencia y salario. |
 | `ion-select` / `ion-select-option` | Registro | Selección del cargo al que postula (4 opciones). |
 | `ion-radio-group` / `ion-radio` | Registro | Selección única de nivel académico. |
 | `ion-segment` / `ion-segment-button` | Registro | Selector táctil de modalidad de trabajo (Presencial/Híbrida/Remota). |
@@ -161,6 +159,7 @@ TalentFlow/
 | `ion-refresher` | Candidatos | Gesto táctil pull-to-refresh para recargar desde Firestore. |
 | `ion-chip` / `ion-badge` | Listado / Detalle | Etiquetas visuales de habilidades, modalidad y contadores. |
 | `ion-skeleton-text` | Candidatos | Estado de carga esquelético antes de recibir los datos. |
+| `ion-spinner` | Registro / Candidatos | Indicadores circulares de procesamiento durante guardado. |
 
 ---
 
@@ -191,7 +190,7 @@ export interface Candidato {
   aspiracionSalarial: number;  // USD
   resumen: string;
   consentimiento: boolean;
-  creadoEn?: any;             // serverTimestamp() de Firestore
+  creadoEn?: Timestamp | string | null; // serverTimestamp() de Firestore
 }
 ```
 
@@ -329,7 +328,7 @@ service cloud.firestore {
     }
 
     function candidatoValido(d) {
-      return d.keys().hasAll([
+      return d.keys().hasOnly([
           'nombres', 'correo', 'telefono', 'fechaNacimiento', 'cargo',
           'nivelAcademico', 'experienciaAnios', 'modalidad', 'habilidades',
           'fechaDisponibilidad', 'aspiracionSalarial', 'resumen',
@@ -339,7 +338,7 @@ service cloud.firestore {
         d.correo is string &&
         d.correo.matches('^[^@\\s]+@[^@\\s]+\\.[a-zA-Z]{2,}$') &&
         d.telefono is string &&
-        d.telefono.matches('^[+]?[0-9\\s-]{7,20}$') &&
+        d.telefono.matches('^[+]?[0-9][0-9\\s-]{6,19}$') &&
         d.fechaNacimiento is string &&
         d.fechaNacimiento.matches('^\\d{4}-\\d{2}-\\d{2}$') &&
         d.cargo in ['Desarrollador móvil', 'Analista de datos', 'Diseñador UX/UI', 'Soporte TI'] &&
@@ -353,7 +352,7 @@ service cloud.firestore {
         d.aspiracionSalarial is number && d.aspiracionSalarial > 0 &&
         esTextoNoVacio(d.resumen, 30, 600) &&
         d.consentimiento == true &&
-        (d.creadoEn == request.time || d.creadoEn is timestamp);
+        d.creadoEn == request.time;
     }
 
     match /candidatos/{id} {
@@ -366,7 +365,6 @@ service cloud.firestore {
 ```
 
 > Las reglas completas para entornos productivos con roles de autenticación y App Check se encuentran versionadas en [`firestore.prod.rules`](firestore.prod.rules).
-```
 
 ### 2. Por qué estas reglas NO son aptas para producción
 * **Lectura abierta:** Cualquier cliente con la configuración de Firebase podría listar todas las hojas de vida almacenadas.

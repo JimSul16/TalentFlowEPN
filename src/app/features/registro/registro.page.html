@@ -68,19 +68,14 @@
         }
 
         <!-- Fecha de Nacimiento -->
-        <ion-item lines="inset" class="datetime-item">
-          <ion-label>Fecha de Nacimiento *</ion-label>
-          <ion-datetime-button datetime="datetime-nacimiento"></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
-              <ion-datetime
-                id="datetime-nacimiento"
-                presentation="date"
-                formControlName="fechaNacimiento"
-                [max]="fechaHoy"
-              ></ion-datetime>
-            </ng-template>
-          </ion-modal>
+        <ion-item lines="inset" class="custom-item">
+          <ion-input
+            label="Fecha de Nacimiento *"
+            labelPlacement="floating"
+            formControlName="fechaNacimiento"
+            type="date"
+            [max]="fechaHoy"
+          ></ion-input>
         </ion-item>
         @if (candidatoForm.get('fechaNacimiento')?.touched && candidatoForm.get('fechaNacimiento')?.invalid) {
         <ion-note color="danger" class="error-note" role="alert" aria-live="polite">
@@ -197,19 +192,14 @@
       </ion-card-header>
       <ion-card-content>
         <!-- Fecha de Disponibilidad -->
-        <ion-item lines="inset" class="datetime-item">
-          <ion-label>Fecha Disponible para Iniciar *</ion-label>
-          <ion-datetime-button datetime="datetime-disponibilidad"></ion-datetime-button>
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
-              <ion-datetime
-                id="datetime-disponibilidad"
-                presentation="date"
-                formControlName="fechaDisponibilidad"
-                [min]="fechaHoy"
-              ></ion-datetime>
-            </ng-template>
-          </ion-modal>
+        <ion-item lines="inset" class="custom-item">
+          <ion-input
+            label="Fecha Disponible para Iniciar *"
+            labelPlacement="floating"
+            formControlName="fechaDisponibilidad"
+            type="date"
+            [min]="fechaHoy"
+          ></ion-input>
         </ion-item>
         @if (candidatoForm.get('fechaDisponibilidad')?.touched && candidatoForm.get('fechaDisponibilidad')?.invalid) {
         <ion-note color="danger" class="error-note" role="alert" aria-live="polite">

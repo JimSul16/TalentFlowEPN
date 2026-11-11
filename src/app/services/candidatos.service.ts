@@ -103,7 +103,7 @@ export class CandidatosService {
     if (code === 'unavailable') {
       return 'El servicio de base de datos no está disponible. Revisa tu conexión a internet.';
     }
-    if (code === 'not-found') {
+    if (code === 'not-found' || err?.message?.includes('No se encontró')) {
       return 'No se encontró el registro solicitado.';
     }
     return 'Ocurrió un error al comunicarse con la base de datos de Firestore.';

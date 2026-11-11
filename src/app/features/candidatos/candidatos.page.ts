@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import type { OnInit } from '@angular/core';
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -61,7 +60,7 @@ import { CandidatoDetalleComponent } from './candidato-detalle/candidato-detalle
     IonSkeletonText,
   ],
 })
-export class CandidatosPage implements OnInit {
+export class CandidatosPage {
   private candidatosService = inject(CandidatosService);
   private modalCtrl = inject(ModalController);
   private router = inject(Router);
@@ -79,10 +78,6 @@ export class CandidatosPage implements OnInit {
       personAddOutline,
       timeOutline,
     });
-  }
-
-  ngOnInit(): void {
-    void this.cargarCandidatos();
   }
 
   /**

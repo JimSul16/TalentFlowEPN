@@ -17,6 +17,7 @@ test.describe('Generador de Evidencias TalentFlow', () => {
     await page.locator('ion-input[formcontrolname="nombres"] input').fill('A');
     await page.locator('ion-input[formcontrolname="correo"] input').fill('correo-invalido');
     await page.locator('ion-input[formcontrolname="telefono"] input').fill('123');
+    await page.locator('ion-input[formcontrolname="fechaNacimiento"] input').fill('2099-01-01');
     await page.locator('ion-textarea[formcontrolname="resumen"] textarea').fill('Muy corto');
     await page.locator('ion-button[type="submit"]').click({ force: true });
     await page.waitForTimeout(800);

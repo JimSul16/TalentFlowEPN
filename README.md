@@ -4,15 +4,30 @@
 
 # 🎯 TalentFlow — Registro Empresarial de Hojas de Vida
 
-> *Aplicación móvil empresarial desarrollada con **Ionic**, **Angular Standalone**, **Firebase Cloud Firestore** y empaquetada como APK nativo mediante **Capacitor**.*
+> _Aplicación móvil empresarial desarrollada con **Ionic**, **Angular Standalone**, **Firebase Cloud Firestore** y empaquetada como APK nativo mediante **Capacitor**._
 
 <p align="center">
   <img src="https://img.shields.io/badge/Ionic-9.0-3880FF?style=for-the-badge&logo=ionic&logoColor=white" alt="Ionic" />
-  <img src="https://img.shields.io/badge/Angular-22%20Standalone-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
-  <img src="https://img.shields.io/badge/Firebase-Cloud%20Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
-  <img src="https://img.shields.io/badge/Capacitor-8.0-119EFF?style=for-the-badge&logo=capacitor&logoColor=white" alt="Capacitor" />
-  <img src="https://img.shields.io/badge/Android-APK%20Debug-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android" />
-  <img src="https://img.shields.io/badge/Tests-38%20Passed-success?style=for-the-badge&logo=vitest&logoColor=white" alt="Tests" />
+  <img
+    src="https://img.shields.io/badge/Angular-22%20Standalone-DD0031?style=for-the-badge&logo=angular&logoColor=white"
+    alt="Angular"
+  />
+  <img
+    src="https://img.shields.io/badge/Firebase-Cloud%20Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black"
+    alt="Firebase"
+  />
+  <img
+    src="https://img.shields.io/badge/Capacitor-8.0-119EFF?style=for-the-badge&logo=capacitor&logoColor=white"
+    alt="Capacitor"
+  />
+  <img
+    src="https://img.shields.io/badge/Android-APK%20Debug-3DDC84?style=for-the-badge&logo=android&logoColor=white"
+    alt="Android"
+  />
+  <img
+    src="https://img.shields.io/badge/Tests-38%20Passed-success?style=for-the-badge&logo=vitest&logoColor=white"
+    alt="Tests"
+  />
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />
 </p>
 
@@ -45,12 +60,12 @@ Este proyecto implementa un **MVP móvil de alta fidelidad** desarrollado con **
 
 ## ✨ Características Principales
 
-* 📝 **Formulario Segmentado por Bloques:** Formulario reactivo de 13 campos estructurado en 3 tarjetas ergonómicas (`Datos Personales`, `Perfil Profesional`, `Disponibilidad y Resumen`) para evitar la fatiga móvil.
-* 🛡️ **Validaciones Defensivas en Doble Capa:** Validación síncrona en cliente con mensajes de error contextuales y validación estricta en servidor mediante reglas de seguridad de Firestore.
-* ☁️ **Persistencia en Tiempo Real:** Integración directa con Cloud Firestore (`addDoc`, `getDocs`, `serverTimestamp`), asegurando atributos indexables e inmutabilidad temporal.
-* 🔎 **Consulta y Detalle Completo:** Listado visual con pull-to-refresh (`ion-refresher`) y visualización de la totalidad de datos del candidato mediante un modal emergente (`ion-modal`).
-* 🎨 **Diseño Inclusivo y Accesible:** Paleta con contraste validado WCAG 2.2 AA, soporte de modo oscuro y componentes táctiles adaptados a pantallas móviles.
-* 📱 **Compilación Nativa por CMD:** Generación automática del APK de depuración sin requerir la interfaz de Android Studio.
+- 📝 **Formulario Segmentado por Bloques:** Formulario reactivo de 13 campos estructurado en 3 tarjetas ergonómicas (`Datos Personales`, `Perfil Profesional`, `Disponibilidad y Resumen`) para evitar la fatiga móvil.
+- 🛡️ **Validaciones Defensivas en Doble Capa:** Validación síncrona en cliente con mensajes de error contextuales y validación estricta en servidor mediante reglas de seguridad de Firestore.
+- ☁️ **Persistencia en Tiempo Real:** Integración directa con Cloud Firestore (`addDoc`, `getDocs`, `serverTimestamp`), asegurando atributos indexables e inmutabilidad temporal.
+- 🔎 **Consulta y Detalle Completo:** Listado visual con pull-to-refresh (`ion-refresher`) y visualización de la totalidad de datos del candidato mediante un modal emergente (`ion-modal`).
+- 🎨 **Diseño Inclusivo y Accesible:** Paleta con contraste validado WCAG 2.2 AA, soporte de modo oscuro y componentes táctiles adaptados a pantallas móviles.
+- 📱 **Compilación Nativa por CMD:** Generación automática del APK de depuración sin requerir la interfaz de Android Studio.
 
 ---
 
@@ -138,28 +153,29 @@ TalentFlow/
 ## 🛠️ Tecnologías y Componentes Ionic
 
 ### Stack Tecnológico
-* **Frontend:** Ionic Framework 9, Angular 22 (Standalone Components), TypeScript 5.8, SCSS.
-* **Backend BaaS:** Firebase Cloud Firestore SDK Modular (`firebase/firestore`).
-* **Testing:** Vitest 5.1 (27 pruebas unitarias de Angular + 10 pruebas de reglas de Firestore en Emulador real), Playwright 1.65 (E2E Testing y captura automatizada de evidencias). Total: **38 pruebas aprobadas**.
-* **Empaquetado Móvil:** Capacitor 8, Android SDK Platform 36 (targetSdk 36, minSdk 24), Gradle Wrapper 8.14.3.
+
+- **Frontend:** Ionic Framework 9, Angular 22 (Standalone Components), TypeScript 5.8, SCSS.
+- **Backend BaaS:** Firebase Cloud Firestore SDK Modular (`firebase/firestore`).
+- **Testing:** Vitest 5.1 (27 pruebas unitarias de Angular + 10 pruebas de reglas de Firestore en Emulador real), Playwright 1.65 (E2E Testing y captura automatizada de evidencias). Total: **38 pruebas aprobadas**.
+- **Empaquetado Móvil:** Capacitor 8, Android SDK Platform 36 (targetSdk 36, minSdk 24), Gradle Wrapper 8.14.3.
 
 ### Inventario de Componentes Ionic Utilizados (13 tipos)
 
-| Componente | Sección / Pantalla | Propósito |
-|---|---|---|
-| `ion-input` | Registro | Captura de nombres, correo, teléfono, fechas (date picker), experiencia y salario. |
-| `ion-select` / `ion-select-option` | Registro | Selección del cargo al que postula (4 opciones). |
-| `ion-radio-group` / `ion-radio` | Registro | Selección única de nivel académico. |
-| `ion-segment` / `ion-segment-button` | Registro | Selector táctil de modalidad de trabajo (Presencial/Híbrida/Remota). |
-| `ion-checkbox` | Registro | Selección múltiple de habilidades técnicas y consentimiento. |
-| `ion-textarea` | Registro | Redacción del resumen profesional (mínimo 30 caracteres). |
-| `ion-button` | Registro / Listado / Detalle | Acciones principales de envío, limpieza, cierre y reintento. |
-| `ion-card` | Registro / Listado / Detalle | Agrupación visual en tarjetas de contenido. |
-| `ion-modal` | Candidatos | Presentación del detalle completo del candidato sin recargar pantalla. |
-| `ion-refresher` | Candidatos | Gesto táctil pull-to-refresh para recargar desde Firestore. |
-| `ion-chip` / `ion-badge` | Listado / Detalle | Etiquetas visuales de habilidades, modalidad y contadores. |
-| `ion-skeleton-text` | Candidatos | Estado de carga esquelético antes de recibir los datos. |
-| `ion-spinner` | Registro / Candidatos | Indicadores circulares de procesamiento durante guardado. |
+| Componente                           | Sección / Pantalla           | Propósito                                                                          |
+| ------------------------------------ | ---------------------------- | ---------------------------------------------------------------------------------- |
+| `ion-input`                          | Registro                     | Captura de nombres, correo, teléfono, fechas (date picker), experiencia y salario. |
+| `ion-select` / `ion-select-option`   | Registro                     | Selección del cargo al que postula (4 opciones).                                   |
+| `ion-radio-group` / `ion-radio`      | Registro                     | Selección única de nivel académico.                                                |
+| `ion-segment` / `ion-segment-button` | Registro                     | Selector táctil de modalidad de trabajo (Presencial/Híbrida/Remota).               |
+| `ion-checkbox`                       | Registro                     | Selección múltiple de habilidades técnicas y consentimiento.                       |
+| `ion-textarea`                       | Registro                     | Redacción del resumen profesional (mínimo 30 caracteres).                          |
+| `ion-button`                         | Registro / Listado / Detalle | Acciones principales de envío, limpieza, cierre y reintento.                       |
+| `ion-card`                           | Registro / Listado / Detalle | Agrupación visual en tarjetas de contenido.                                        |
+| `ion-modal`                          | Candidatos                   | Presentación del detalle completo del candidato sin recargar pantalla.             |
+| `ion-refresher`                      | Candidatos                   | Gesto táctil pull-to-refresh para recargar desde Firestore.                        |
+| `ion-chip` / `ion-badge`             | Listado / Detalle            | Etiquetas visuales de habilidades, modalidad y contadores.                         |
+| `ion-skeleton-text`                  | Candidatos                   | Estado de carga esquelético antes de recibir los datos.                            |
+| `ion-spinner`                        | Registro / Candidatos        | Indicadores circulares de procesamiento durante guardado.                          |
 
 ---
 
@@ -180,14 +196,14 @@ export interface Candidato {
   nombres: string;
   correo: string;
   telefono: string;
-  fechaNacimiento: string;     // ISO YYYY-MM-DD (evita desvíos UTC)
+  fechaNacimiento: string; // ISO YYYY-MM-DD (evita desvíos UTC)
   cargo: Cargo;
   nivelAcademico: NivelAcademico;
   experienciaAnios: number;
   modalidad: Modalidad;
   habilidades: Habilidad[];
   fechaDisponibilidad: string; // ISO YYYY-MM-DD
-  aspiracionSalarial: number;  // USD
+  aspiracionSalarial: number; // USD
   resumen: string;
   consentimiento: boolean;
   creadoEn?: Timestamp | string | null; // serverTimestamp() de Firestore
@@ -220,44 +236,50 @@ export interface Candidato {
 ## 🚀 Instalación y Ejecución Local
 
 ### Prerrequisitos
-* **Node.js:** v22 LTS o superior (`node -v`)
-* **npm:** v10+ (`npm -v`)
-* **Ionic CLI:** (`npm install -g @ionic/cli`)
+
+- **Node.js:** v22 LTS o superior (`node -v`)
+- **npm:** v10+ (`npm -v`)
+- **Ionic CLI:** (`npm install -g @ionic/cli`)
 
 ### Pasos de Instalación
 
 1. **Clonar el repositorio:**
+
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd TalentFlow
+   git clone https://github.com/JimSul16/TalentFlowEPN.git
+   cd TalentFlowEPN
    ```
 
 2. **Instalar dependencias:**
+
    ```bash
    npm install
    ```
 
 3. **Configurar credenciales de Firebase:**
    Copia el archivo de plantilla `.env.example` o configura `src/environments/environment.ts`:
+
    ```typescript
    export const environment = {
      production: false,
      firebase: {
-       apiKey: "TU_API_KEY",
-       authDomain: "tu-proyecto.firebaseapp.com",
-       projectId: "tu-proyecto",
-       storageBucket: "tu-proyecto.appspot.com",
-       messagingSenderId: "123456789012",
-       appId: "1:123456789012:web:abcdef123456"
-     }
+       apiKey: 'TU_API_KEY',
+       authDomain: 'tu-proyecto.firebaseapp.com',
+       projectId: 'tu-proyecto',
+       storageBucket: 'tu-proyecto.appspot.com',
+       messagingSenderId: '123456789012',
+       appId: '1:123456789012:web:abcdef123456',
+     },
    };
    ```
 
 4. **Ejecutar en modo de desarrollo:**
+
    ```bash
    ionic serve
    ```
-   *La aplicación estará disponible en `http://localhost:8100/`.*
+
+   _La aplicación estará disponible en `http://localhost:8100/`._
 
 5. **Ejecutar pruebas unitarias, de reglas, E2E y linter:**
    ```bash
@@ -300,7 +322,7 @@ Hemos configurado un script automatizado en `package.json`:
 npm run apk:debug
 ```
 
-*(Equivale a ejecutar: `npm run build && npx cap sync android && cd android && .\gradlew.bat assembleDebug`)*
+_(Equivale a ejecutar: `npm run build && npx cap sync android && cd android && .\gradlew.bat assembleDebug`)_
 
 ### Ubicación del APK Generado
 
@@ -371,10 +393,12 @@ service cloud.firestore {
 > Las reglas completas para entornos productivos con roles de autenticación y App Check se encuentran versionadas en [`firestore.prod.rules`](firestore.prod.rules).
 
 ### 2. Por qué estas reglas NO son aptas para producción
-* **Lectura abierta:** Cualquier cliente con la configuración de Firebase podría listar todas las hojas de vida almacenadas.
-* **Ausencia de autenticación:** No se verifica la identidad del remitente.
+
+- **Lectura abierta:** Cualquier cliente con la configuración de Firebase podría listar todas las hojas de vida almacenadas.
+- **Ausencia de autenticación:** No se verifica la identidad del remitente.
 
 ### 3. Reglas Recomendadas para Producción
+
 En un despliegue corporativo real, la lectura debe restringirse a usuarios con el rol verificado de reclutador (`request.auth.token.role == 'reclutador'`), y la creación debe asegurarse mediante **Firebase App Check** (Play Integrity / reCAPTCHA) y **Cloud Functions**:
 
 ```javascript
@@ -391,17 +415,17 @@ match /candidatos/{id} {
 
 Se ejecutaron pruebas automatizadas y funcionales manuales cubriendo casos exitosos y de validación fallida:
 
-| # | Caso de Prueba | Datos de Entrada | Resultado Esperado | Resultado Obtenido | Estado |
-|---|---|---|---|---|:---:|
-| **CP-01** | Registro Válvula Completo | Ana Pérez, ana@test.com, 0991234567, 3 años exp, Híbrida, 3 habilidades, resumen > 30 chars, consentimiento: true | Formulario válido, guardado en Firestore, toast verde y reset. | Guardado exitoso, ID generado en Firestore. | ✅ PASS |
-| **CP-02** | Registro Remoto sin Exp | Luis Torres, 0 años de experiencia, Modalidad Remota, 1 habilidad, consentimiento: true | Válido, guarda experiencia 0 y modalidad Remota. | Documento registrado con `experienciaAnios: 0`. | ✅ PASS |
-| **CP-03** | Múltiples Habilidades | Sofía Gómez, 5 habilidades seleccionadas (Ionic, Angular, Python, SQL, Git) | Arreglo de 5 strings en Firestore. | Campo `habilidades` guardado con 5 elementos. | ✅ PASS |
-| **CP-04** | Candidato Posgrado | Jorge Dávila, Posgrado, Soporte TI, aspiración $2500 USD | Registro con nivel académico y salario correcto. | Datos persistidos fielmente. | ✅ PASS |
-| **CP-05** | Modalidad Presencial | Elena Castro, Diseñador UX/UI, Presencial, 2 años exp | Registro correcto con modalidad Presencial. | Persistencia y visualización confirmada. | ✅ PASS |
-| **CP-06** | ❌ Correo Inválido | Correo: `correo-sin-arroba` | Error visual inline, botón guardar deshabilitado. | Bloqueado en cliente; no se invoca Firebase. | ✅ PASS |
-| **CP-07** | ❌ Sin Consentimiento | Formulario completo pero checkbox de consentimiento desmarcado | Formulario inválido, botón deshabilitado. | Envío impedido por validador `requiredTrue`. | ✅ PASS |
-| **CP-08** | ❌ Fecha Nacimiento Futura | Fecha seleccionada: `2099-12-31` | Error `La fecha de nacimiento no puede ser futura`. | Rechazado por validador personalizado. | ✅ PASS |
-| **CP-09** | ❌ Resumen muy Corto | Resumen: `Hola soy desarrollador` (22 caracteres) | Error inline indicando mínimo 30 caracteres. | Bloqueado hasta completar longitud requerida. | ✅ PASS |
+| #         | Caso de Prueba             | Datos de Entrada                                                                                                  | Resultado Esperado                                             | Resultado Obtenido                              | Estado  |
+| --------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------- | :-----: |
+| **CP-01** | Registro Válvula Completo  | Ana Pérez, ana@test.com, 0991234567, 3 años exp, Híbrida, 3 habilidades, resumen > 30 chars, consentimiento: true | Formulario válido, guardado en Firestore, toast verde y reset. | Guardado exitoso, ID generado en Firestore.     | ✅ PASS |
+| **CP-02** | Registro Remoto sin Exp    | Luis Torres, 0 años de experiencia, Modalidad Remota, 1 habilidad, consentimiento: true                           | Válido, guarda experiencia 0 y modalidad Remota.               | Documento registrado con `experienciaAnios: 0`. | ✅ PASS |
+| **CP-03** | Múltiples Habilidades      | Sofía Gómez, 5 habilidades seleccionadas (Ionic, Angular, Python, SQL, Git)                                       | Arreglo de 5 strings en Firestore.                             | Campo `habilidades` guardado con 5 elementos.   | ✅ PASS |
+| **CP-04** | Candidato Posgrado         | Jorge Dávila, Posgrado, Soporte TI, aspiración $2500 USD                                                          | Registro con nivel académico y salario correcto.               | Datos persistidos fielmente.                    | ✅ PASS |
+| **CP-05** | Modalidad Presencial       | Elena Castro, Diseñador UX/UI, Presencial, 2 años exp                                                             | Registro correcto con modalidad Presencial.                    | Persistencia y visualización confirmada.        | ✅ PASS |
+| **CP-06** | ❌ Correo Inválido         | Correo: `correo-sin-arroba`                                                                                       | Error visual inline, botón guardar deshabilitado.              | Bloqueado en cliente; no se invoca Firebase.    | ✅ PASS |
+| **CP-07** | ❌ Sin Consentimiento      | Formulario completo pero checkbox de consentimiento desmarcado                                                    | Formulario inválido, botón deshabilitado.                      | Envío impedido por validador `requiredTrue`.    | ✅ PASS |
+| **CP-08** | ❌ Fecha Nacimiento Futura | Fecha seleccionada: `2099-12-31`                                                                                  | Error `La fecha de nacimiento no puede ser futura`.            | Rechazado por validador personalizado.          | ✅ PASS |
+| **CP-09** | ❌ Resumen muy Corto       | Resumen: `Hola soy desarrollador` (22 caracteres)                                                                 | Error inline indicando mínimo 30 caracteres.                   | Bloqueado hasta completar longitud requerida.   | ✅ PASS |
 
 ---
 
@@ -409,21 +433,36 @@ Se ejecutaron pruebas automatizadas y funcionales manuales cubriendo casos exito
 
 Las capturas de pantalla del prototipo y de la consola de Firebase Firestore se encuentran organizadas en la carpeta [`docs/evidencias/`](docs/evidencias/):
 
-| Evidencia | Descripción | Archivo |
-|---|---|---|
-| **01 - Formulario de Registro** | Captura del formulario organizado en 3 bloques visuales con componentes Ionic. | `docs/evidencias/01-formulario-registro.png` |
-| **02 - Validaciones de Error** | Mensajes en rojo al ingresar campos erróneos (correo, fechas, resumen corto). | `docs/evidencias/02-validaciones-error.png` |
-| **03 - Listado de Candidatos** | Vista de tarjetas con candidatos recuperados desde Firestore y pull-to-refresh. | `docs/evidencias/03-listado-candidatos.png` |
-| **04 - Modal de Detalle** | Pantalla modal con la totalidad de los datos estructurados del postulante. | `docs/evidencias/04-detalle-modal.png` |
-| **05 - Consola de Firebase** | Documentos creados en la colección `candidatos` con sus atributos y timestamp. | `docs/evidencias/05-firebase-firestore.png` |
-| **06 - Compilación del APK** | Terminal CMD mostrando la ejecución exitosa de `assembleDebug` y el APK generado. | `docs/evidencias/06-compilacion-apk.png` |
+| Evidencia                       | Descripción                                                                       | Archivo                                                                    |
+| ------------------------------- | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **01 - Formulario de Registro** | Captura del formulario organizado en 3 bloques visuales con componentes Ionic.    | [`01-formulario-registro.png`](docs/evidencias/01-formulario-registro.png) |
+| **02 - Validaciones de Error**  | Mensajes en rojo al ingresar campos erróneos (correo, fechas, resumen corto).     | [`02-validaciones-error.png`](docs/evidencias/02-validaciones-error.png)   |
+| **03 - Listado de Candidatos**  | Vista de tarjetas con candidatos recuperados desde Firestore y pull-to-refresh.   | [`03-listado-candidatos.png`](docs/evidencias/03-listado-candidatos.png)   |
+| **04 - Modal de Detalle**       | Pantalla modal con la totalidad de los datos estructurados del postulante.        | [`04-detalle-modal.png`](docs/evidencias/04-detalle-modal.png)             |
+| **05 - Consola de Firebase**    | Documentos creados en la colección `candidatos` con sus atributos y timestamp.    | [`05-firebase-firestore.png`](docs/evidencias/05-firebase-firestore.png)   |
+| **06 - Compilación del APK**    | Terminal CMD mostrando la ejecución exitosa de `assembleDebug` y el APK generado. | [`06-compilacion-apk.png`](docs/evidencias/06-compilacion-apk.png)         |
+
+### Galería Visual de Evidencias
+
+<p align="center">
+  <img src="docs/evidencias/01-formulario-registro.png" width="48%" alt="Formulario de Registro" />
+  <img src="docs/evidencias/02-validaciones-error.png" width="48%" alt="Validaciones de Error" />
+</p>
+<p align="center">
+  <img src="docs/evidencias/03-listado-candidatos.png" width="48%" alt="Listado de Candidatos" />
+  <img src="docs/evidencias/04-detalle-modal.png" width="48%" alt="Modal de Detalle" />
+</p>
+<p align="center">
+  <img src="docs/evidencias/05-firebase-firestore.png" width="48%" alt="Consola Firebase" />
+  <img src="docs/evidencias/06-compilacion-apk.png" width="48%" alt="Compilación APK" />
+</p>
 
 ---
 
 ## 👥 Integrantes y Distribución del Trabajo
 
-* **Estudiante 1 / Integrante:** [Nombres y Apellidos Completos] — Arquitectura frontend, componentes Ionic y diseño UI/UX.
-* **Estudiante 2 / Integrante:** [Nombres y Apellidos Completos] — Integración con Firebase Firestore, reglas de seguridad y compilación del APK.
+- **Estudiante 1 / Integrante:** [Nombres y Apellidos Completos] — Arquitectura frontend, componentes Ionic y diseño UI/UX.
+- **Estudiante 2 / Integrante:** [Nombres y Apellidos Completos] — Integración con Firebase Firestore, reglas de seguridad y compilación del APK.
 
 ---
 

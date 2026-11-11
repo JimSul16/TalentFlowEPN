@@ -45,7 +45,7 @@
 8. [🔐 Seguridad y Reglas de Firestore](#-seguridad-y-reglas-de-firestore)
 9. [🧪 Matriz de Pruebas y Validación](#-matriz-de-pruebas-y-validación)
 10. [📸 Evidencias](#-evidencias)
-11. [👥 Integrantes y Distribución del Trabajo](#-integrantes-y-distribución-del-trabajo)
+11. [👥 Integrante y Autoría](#-integrante-y-autoría)
 12. [📄 Licencia](#-licencia)
 
 ---
@@ -459,10 +459,9 @@ Las capturas de pantalla del prototipo y de la consola de Firebase Firestore se 
 
 ---
 
-## 👥 Integrantes y Distribución del Trabajo
+## 👥 Integrante y Autoría
 
-- **Estudiante 1 / Integrante:** [Nombres y Apellidos Completos] — Arquitectura frontend, componentes Ionic y diseño UI/UX.
-- **Estudiante 2 / Integrante:** [Nombres y Apellidos Completos] — Integración con Firebase Firestore, reglas de seguridad y compilación del APK.
+- **Estudiante:** **Jimy Lucero** — Desarrollo integral móvil: arquitectura frontend (Ionic 9 / Angular Standalone), integración con Firebase Cloud Firestore, validaciones defensivas, reglas de seguridad y compilación nativa del APK.
 
 ---
 

@@ -29,7 +29,7 @@ service cloud.firestore {
         d.aspiracionSalarial is number && d.aspiracionSalarial > 0 &&
         esTextoNoVacio(d.resumen, 30, 600) &&
         d.consentimiento == true &&
-        d.creadoEn == request.time;
+        (d.creadoEn == request.time || d.creadoEn is timestamp);
     }
 
     match /candidatos/{id} {
